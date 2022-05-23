@@ -304,7 +304,7 @@ class _HomeState extends State<Home> {
         }  */
       },
     );
-    //widget que permite apagar passando pra esquerda
+
   }
 
   Future<File> _getFile() async {
