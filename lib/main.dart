@@ -39,9 +39,9 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    _readData().then((dados) {
+    _readData().then((yazi) {
       setState(() {
-        _toDoList = List<Map<String, dynamic>>.from(json.decode(dados));
+        _toDoList = List<Map<String, dynamic>>.from(json.decode(yazi));
       });
     });
   }
@@ -90,7 +90,7 @@ class _HomeState extends State<Home> {
       themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("To do List"),
+          title: Text("Yapılacaklar Listesi"),
           backgroundColor: Colors.blueGrey,
           centerTitle: true,
           actions: <Widget>[
@@ -115,14 +115,14 @@ class _HomeState extends State<Home> {
                     child: TextField(
                       controller: _toDoController,
                       decoration: InputDecoration(
-                          labelText: "New Task",
+                          labelText: "Yeni Görev",
                           labelStyle: TextStyle(color: Colors.blueGrey)),
                       maxLines: null,
                     ),
                   ),
                   RaisedButton(
                       color: Colors.blueGrey,
-                      child: Text("ADD"),
+                      child: Text("EKLE"),
                       textColor: Colors.white,
                       onPressed: _addToDo)
                 ],
@@ -151,7 +151,7 @@ class _HomeState extends State<Home> {
       padding: EdgeInsets.zero,
       children: <Widget>[
         DrawerHeader(
-          child: Text('Drawer Header',
+          child: Text('Menü',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white, fontSize: 18)),
           decoration: BoxDecoration(
@@ -185,7 +185,7 @@ class _HomeState extends State<Home> {
               color: Colors.white,
             ),
             Text(
-              " Edit",
+              " Düzenle",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
@@ -211,7 +211,7 @@ class _HomeState extends State<Home> {
               color: Colors.white,
             ),
             Text(
-              " Delete",
+              " Sil",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w700,
@@ -282,9 +282,9 @@ class _HomeState extends State<Home> {
 
             _saveData();
             final snack = SnackBar(
-              content: Text("Task \"${_lastRemove["title"]}\" removed"),
+              content: Text("Görev \"${_lastRemove["title"]}\" silindi"),
               action: SnackBarAction(
-                  label: "Undo",
+                  label: "Geri",
                   onPressed: () {
                     setState(() {
                       _toDoList.insert(_lastRemovenPos, _lastRemove);
@@ -310,16 +310,16 @@ class _HomeState extends State<Home> {
   Future<File> _getFile() async {
 
     final directory = await getApplicationDocumentsDirectory();
-    return File("${directory.path}/dados.json");
+    return File("${directory.path}/yazi.json");
   }
 
   Future<File> _saveData() async {
-    String dados = json.encode(
+    String yazi = json.encode(
         _toDoList);
     final file =
     await _getFile();
     return file
-        .writeAsString(dados);
+        .writeAsString(yazi);
   }
 
   Future<String> _readData() async {

@@ -15,7 +15,7 @@ class EditPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Edit Page",
+          "Düzenleme Sayfası",
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.white),
         ),
@@ -30,7 +30,7 @@ class EditPage extends StatelessWidget {
                 child: TextField(
                   controller: _toDoController,
                   decoration: InputDecoration(
-                      labelText: "Edit Task",
+                      labelText: "Görevi Düzenle",
                       labelStyle: TextStyle(color: Colors.blueGrey)),
                   maxLines: null,
                 ),
